@@ -1,101 +1,99 @@
-import Image from "next/image";
+import { Icon } from "@iconify/react";
+import Image from 'next/image';
+import Hero from "@/assets/images/bgn.png";
+import Logo from "@/assets/images/logo.png";
+import Meeting from "@/assets/icons/meetingroom.svg"
+import Outdoor from "@/assets/icons/outdoor.svg"
+import Ballroom from "@/assets/icons/ballroom.svg"
 
-export default function Home() {
+const Home = () => {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className='w-full'>
+      {/* Hero Section */}
+      <div className="relative w-full h-fit bg-black opacity-90">
+        <Image 
+        src = {Hero}
+        alt = "Hero"
+        width={1200}
+        height={900}
+        className="w-full h-full object-cover bg-cover"/>
+        {/* Text besar tengah */}
+        <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white">
+          <Image src={Logo} alt="logo" width={300} height={294} priority={true} quality={100} />
+          <h2 className="text-[40px] font-normal mb-6 text-white">
+            Temukan Tempat Terbaik Untuk Acara Anda
+          </h2>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
+          {/* Tombol learn more */}
           <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#services"  // Mengubah href agar menuju ke ID "services" saat diklik
+            className="bg-[#b30d0d] text-white font-bold px-3 py-1 rounded-md shadow-md 
+            flex items-center space-x-2 transition duration-300 hover:bg-[#9d0a0a]"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
+            <span className="text-lg">LEARN MORE</span>
+            <span className="text-2xl leading-none">&gt;</span>
           </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
+
+      {/* Services Section */}
+      <div id="services" className="bg-gray-300 py-16 text-center ">
+        <h3 className="text-3xl font-bold text-blue-700 mb-4">LAYANAN KAMI</h3>
+        <p className="text-gray-600 mb-12">pengalaman yang tak terlupakan bagi setiap acara Anda.</p>
+        <div className="flex justify-center gap-10">
+
+          {/* Meeting Room */}
+          <div className="bg-gray-200 p-8 rounded-lg shadow-md w-64 text-center">
+            <h4 className="text-2xl font-semibold">Meeting Room</h4>
+            <Image src={Meeting} alt="Meeting Room Icon" width={70} height={70} className="mx-auto mt-10" />
+            <p className="text-black mt-10 font-normal text-[12px]">
+              Ruang pertemuan yang sempurna untuk berdiskusi dan mencapai tujuan Anda,
+              lengkap dengan segala fasilitas untuk mendukung kebutuhan Anda.
+            </p>
+          </div>
+
+          {/* Outdoor */}
+          <div className="bg-gray-200 p-8 rounded-lg shadow-md w-64 text-center">
+            <h4 className="text-2xl font-semibold">Outdoor</h4>
+            <Image src={Outdoor} alt="BallRoom Icon" width={70} height={70} className="mx-auto mt-10 mb-10" />
+            <p className="text-black mt-10 font-normal text-[12px]">
+              Outdoor area yang keren dan estetik, menciptakan suasana yang nyaman untuk
+              acara spesial Anda, terbuka dengan pemandangan yang memukau.
+            </p>
+          </div>
+
+          {/* Ballroom */}
+          <div className="bg-gray-200 p-8 rounded-lg shadow-md w-64 text-center">
+            <h4 className="text-2xl font-semibold">BallRoom</h4>
+            <Image src={Ballroom} alt="BallRoom Icon" width={70} height={70} className="mx-auto mt-10 mb-10" />
+            <p className="text-black mt-10 font-normal text-[12px]">
+              Ruang pertemuan yang sempurna untuk acara besar, lengkap dengan fasilitas utama
+              yang menjadikan acara Anda lebih mudah.
+            </p>
+          </div>
+        </div>
+
+        {/* Contact Us Section */}
+        <div className="mt-12 text-center">
+          <p className="text-black mb-2">Contact Us</p>
+          <div className="flex justify-center gap-4 text-black">
+            <div className="flex items-center gap-1">
+              <Icon icon="mdi:instagram" style={{ color: "black", fontSize: "24px" }} />
+                <span>Venueasy</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <Icon icon="mdi:telephone" style={{ color: "black", fontSize: "24px" }} />
+                <span>+62 867 3847 6645</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <Icon icon="mdi:email" style={{ color: "black", fontSize: "24px" }} />
+                <span>info@venueasy.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
   );
-}
+};
+
+export default Home;
