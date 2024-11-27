@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Logo from "@/image/logo.png";
+import Logo from "@/assets/images/logo.png";
 import { usePathname } from "next/navigation"; 
 
 const Navbar: React.FC = () => {
@@ -51,7 +51,7 @@ const Navbar: React.FC = () => {
 
           {/* Tombol di Kanan */}
           <div className="flex items-center gap-4">
-            <Link href={"/signup"}>
+            <Link href={"/register"}>
             <button className="bg-transparent text-white border border-white px-4 py-2 rounded transition duration-300 hover:bg-[#f44848]">SIGN UP</button>
             </Link>
             <Link href={"/login"}>

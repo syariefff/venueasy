@@ -78,15 +78,15 @@ const Home = () => {
           <p className="text-black mb-2">Contact Us</p>
           <div className="flex justify-center gap-4 text-black">
             <div className="flex items-center gap-1">
-              <Icon icon="mdi:instagram" style={{ color: "black", fontSize: "24px" }} />
+              <Icon icon="proicons:instagram" style={{ color: "black", fontSize: "24px" }} />
                 <span>Venueasy</span>
             </div>
             <div className="flex items-center gap-1">
-              <Icon icon="mdi:telephone" style={{ color: "black", fontSize: "24px" }} />
+              <Icon icon="bi:telephone" style={{ color: "black", fontSize: "19px", }} />
                 <span>+62 867 3847 6645</span>
             </div>
             <div className="flex items-center gap-1">
-              <Icon icon="mdi:email" style={{ color: "black", fontSize: "24px" }} />
+              <Icon icon="mdi-light:email" style={{ color: "black", fontSize: "24px" }} />
                 <span>info@venueasy.com</span>
             </div>
           </div>
