@@ -1,24 +1,27 @@
-"use client"
-import React, { useState, useEffect } from 'react';
+"use client";
+import Link from "next/link";
+import React, { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
-import Image from 'next/image';
-import Logo from '@/assets/images/blacklogo.png';
+import Image from "next/image";
+import { useRouter } from "next/navigation"; // Untuk navigasi antar halaman
+import Logo from "@/assets/images/blacklogo.png";
 
 const Register: React.FC = () => {
   const [isClient, setIsClient] = useState(false);
   const [formData, setFormData] = useState({
-    fullName: '',
-    username: '',
-    email: '',
-    password: ''
+    fullName: "",
+    username: "",
+    email: "",
+    password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({
-    fullName: '',
-    username: '',
-    email: '',
-    password: ''
+    fullName: "",
+    username: "",
+    email: "",
+    password: "",
   });
+  const router = useRouter(); // Inisialisasi router
 
   useEffect(() => {
     setIsClient(true);
@@ -26,30 +29,30 @@ const Register: React.FC = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const validateForm = () => {
     let valid = true;
-    const newErrors = { fullName: '', username: '', email: '', password: '' };
+    const newErrors = { fullName: "", username: "", email: "", password: "" };
 
     if (!formData.fullName) {
-      newErrors.fullName = 'Full Name is required';
+      newErrors.fullName = "Full Name is required";
       valid = false;
     }
     if (!formData.username) {
-      newErrors.username = 'Username is required';
+      newErrors.username = "Username is required";
       valid = false;
     }
     if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Valid email is required';
+      newErrors.email = "Valid email is required";
       valid = false;
     }
     if (formData.password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters';
+      newErrors.password = "Password must be at least 6 characters";
       valid = false;
     }
 
@@ -60,8 +63,7 @@ const Register: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (validateForm()) {
-      // Proceed with form submission
-      console.log('Form submitted', formData);
+      console.log("Form submitted", formData);
     }
   };
 
@@ -80,10 +82,16 @@ const Register: React.FC = () => {
             </h1>
             <h2 className="text-xl">Venueasy</h2>
           </div>
+          <Link href="/" className="text-sm text-gray-500 hover:text-gray-700">
           <div className="flex items-center bg-blue-500 text-white w-60 py-2 rounded mb-4">
-            <Icon icon="ri:google-fill" style={{ color: "white", fontSize: "26px" }} className='ml-2 mr-5'/>
-            <span className='text-center'>Sign Up with Google</span>
+            <Icon
+              icon="ri:google-fill"
+              style={{ color: "white", fontSize: "26px" }}
+              className="ml-2 mr-5"
+            />
+            <span className="text-center">Sign Up with Google</span>
           </div>
+          </Link>
           <div className="w-full max-w-xs">
             <div className="text-center mb-4">OR</div>
             <div className="mb-4">
@@ -91,7 +99,7 @@ const Register: React.FC = () => {
                 {/* Full Name */}
                 <div className="w-1/2">
                   <div className="flex items-center bg-gray-300 rounded-3xl px-3 py-2">
-                    <Icon icon="el:user" style={{ color: "black", fontSize: "26px" }} className='mr-2'/>
+                    <Icon icon="el:user" style={{ color: "black", fontSize: "26px" }} className="mr-2" />
                     <input
                       type="text"
                       name="fullName"
@@ -107,7 +115,11 @@ const Register: React.FC = () => {
                 {/* Username */}
                 <div className="w-1/2">
                   <div className="flex items-center bg-gray-300 rounded-3xl px-3 py-2">
-                    <Icon icon="bi:people" style={{ color: "black", fontSize: "26px", transform: "scaleX(-1)"}} className='mr-2'/>
+                    <Icon
+                      icon="bi:people"
+                      style={{ color: "black", fontSize: "26px", transform: "scaleX(-1)" }}
+                      className="mr-2"
+                    />
                     <input
                       type="text"
                       name="username"
@@ -124,7 +136,7 @@ const Register: React.FC = () => {
               {/* Email */}
               <div className="mb-2">
                 <div className="flex items-center bg-gray-300 rounded-3xl px-3 py-2">
-                  <Icon icon="mdi-light:email" style={{ color: "black", fontSize: "24px" }} className='mr-2'/>
+                  <Icon icon="mdi-light:email" style={{ color: "black", fontSize: "24px" }} className="mr-2" />
                   <input
                     type="text"
                     name="email"
@@ -140,7 +152,7 @@ const Register: React.FC = () => {
               {/* Password */}
               <div>
                 <div className="flex items-center bg-gray-300 rounded-3xl px-3 py-2">
-                  <Icon icon="si:lock-line" style={{ color: "black", fontSize: "26px" }} className='mr-2' />
+                  <Icon icon="si:lock-line" style={{ color: "black", fontSize: "26px" }} className="mr-2" />
                   <input
                     type={showPassword ? "text" : "password"}
                     name="password"
@@ -149,14 +161,14 @@ const Register: React.FC = () => {
                     onChange={handleChange}
                     className="bg-transparent focus:outline-none w-full"
                   />
-                  <button 
+                  <button
                     type="button"
-                    onClick={() => setShowPassword(!showPassword)} 
+                    onClick={() => setShowPassword(!showPassword)}
                     className="ml-2 focus:outline-none"
                   >
-                    <Icon 
-                      icon={showPassword ? "mdi:eye-off" : "mdi:eye"} 
-                      style={{ color: "black", fontSize: "20px" }} 
+                    <Icon
+                      icon={showPassword ? "mdi:eye-off" : "mdi:eye"}
+                      style={{ color: "black", fontSize: "20px" }}
                     />
                   </button>
                 </div>
@@ -164,16 +176,26 @@ const Register: React.FC = () => {
               </div>
             </div>
           </div>
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             className="bg-[#8b4613] text-white w-40 py-2 rounded items-center justify-center"
           >
             Create Account
           </button>
+          <div className="mt-4">
+            <span className="text-sm">Already have an account? </span>
+            <button
+              type="button"
+              className="text-sm text-blue-500 hover:underline"
+              onClick={() => router.push("/login")}
+            >
+              Login
+            </button>
+          </div>
         </form>
       </div>
     </div>
   );
 };
-  
+
 export default Register;

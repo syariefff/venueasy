@@ -21,15 +21,7 @@ const GalleryAndVenues = () => {
 
   return (
     <div
-    className="relative p-5 min-h-screen"
-    style={{
-      backgroundImage: `url(${Bgm.src})`,
-      backgroundSize: "contain",
-      backgroundRepeat: "no-repeat",
-      width: '100vw', 
-      marginLeft: 'calc(-50vw + 50%)'
-    }}
-  >
+    className="relative p-5 min-h-screen">
     <div className="p-5 mb-4">
       {/* Gallery Section */}
       <div className="mt-16 ml-2">

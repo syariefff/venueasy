@@ -1,16 +1,18 @@
-"use client"
-import React, { useState, useEffect } from 'react';
+"use client";
+import React, { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
-import Image from 'next/image';
-import Logo from '@/assets/images/blacklogo.png';
+import Image from "next/image";
+import { useRouter } from "next/navigation"; // Untuk navigasi antar halaman
+import Logo from "@/assets/images/blacklogo.png";
 
 const Login: React.FC = () => {
   const [isClient, setIsClient] = useState(false);
   const [formData, setFormData] = useState({
-    username: '',
-    password: ''
+    username: "",
+    password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter(); // Inisialisasi router
 
   useEffect(() => {
     setIsClient(true);
@@ -18,16 +20,16 @@ const Login: React.FC = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Add login logic here
-    console.log('Login attempted', formData);
+    console.log("Login attempted", formData);
   };
 
   if (!isClient) {
@@ -46,56 +48,74 @@ const Login: React.FC = () => {
             <h2 className="text-xl">Venueasy</h2>
           </div>
           <div className="flex items-center bg-blue-500 text-white w-60 py-2 rounded mb-4">
-            <Icon icon="ri:google-fill" style={{ color: "white", fontSize: "26px" }} className='ml-2 mr-5'/>
-            <span className='text-center'>Log in with Google</span>
+            <Icon
+              icon="ri:google-fill"
+              style={{ color: "white", fontSize: "26px" }}
+              className="ml-2 mr-5"
+            />
+            <span className="text-center">Log in with Google</span>
           </div>
           <div className="w-full max-w-xs">
             <div className="text-center mb-4">OR</div>
             <div className="mb-4">
               <div className="flex items-center bg-gray-300 rounded-3xl px-3 py-2 mb-2">
-                <Icon icon="bi:people" style={{ color: "black", fontSize: "26px", transform: "scaleX(-1)"}} className="mr-2"/>
-                <input 
-                  type="text" 
+                <Icon
+                  icon="bi:people"
+                  style={{ color: "black", fontSize: "26px", transform: "scaleX(-1)" }}
+                  className="mr-2"
+                />
+                <input
+                  type="text"
                   name="username"
-                  placeholder="Username" 
+                  placeholder="Username"
                   value={formData.username}
                   onChange={handleChange}
-                  className="bg-transparent focus:outline-none w-full" 
+                  className="bg-transparent focus:outline-none w-full"
                 />
               </div>
               <div className="flex items-center bg-gray-300 rounded-3xl px-3 py-2">
-                <Icon icon="si:lock-line" style={{ color: "black", fontSize: "26px" }} className="mr-2"/>
-                <input 
-                  type={showPassword ? "text" : "password"} 
+                <Icon icon="si:lock-line" style={{ color: "black", fontSize: "26px" }} className="mr-2" />
+                <input
+                  type={showPassword ? "text" : "password"}
                   name="password"
-                  placeholder="Password" 
+                  placeholder="Password"
                   value={formData.password}
                   onChange={handleChange}
-                  className="bg-transparent focus:outline-none w-full" 
+                  className="bg-transparent focus:outline-none w-full"
                 />
-                <button 
+                <button
                   type="button"
-                  onClick={() => setShowPassword(!showPassword)} 
+                  onClick={() => setShowPassword(!showPassword)}
                   className="ml-2 focus:outline-none"
                 >
-                  <Icon 
-                    icon={showPassword ? "mdi:eye-off" : "mdi:eye"} 
-                    style={{ color: "black", fontSize: "20px" }} 
+                  <Icon
+                    icon={showPassword ? "mdi:eye-off" : "mdi:eye"}
+                    style={{ color: "black", fontSize: "20px" }}
                   />
                 </button>
               </div>
             </div>
           </div>
-          <button 
+          <button
             type="submit"
             className="bg-[#8b4513] text-white w-32 py-2 rounded items-center justify-center"
           >
             Login
           </button>
+          <div className="mt-4">
+            <span className="text-sm">Don't Have An Account? </span>
+            <button
+              type="button"
+              className="text-sm text-blue-500 hover:underline"
+              onClick={() => router.push("/register")}
+            >
+              Sign Up
+            </button>
+          </div>
         </form>
       </div>
     </div>
   );
 };
-  
+
 export default Login;
