@@ -1,3 +1,4 @@
+"use client"
 import { Icon } from "@iconify/react";
 import Image from 'next/image';
 import Hero from "@/assets/images/bgn.png";
@@ -7,6 +8,12 @@ import Outdoor from "@/assets/icons/outdoor.svg"
 import Ballroom from "@/assets/icons/ballroom.svg"
 
 const Home = () => {
+  const handleScrollToServices = () => {
+    const servicesSection = document.getElementById("services");
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <div className='w-full'>
       {/* Hero Section */}
@@ -25,14 +32,14 @@ const Home = () => {
           </h2>
 
           {/* Tombol learn more */}
-          <a
-            href="#services"  // Mengubah href agar menuju ke ID "services" saat diklik
+          <button
+            onClick={handleScrollToServices}
             className="bg-[#b30d0d] text-white font-bold px-3 py-1 rounded-md shadow-md 
             flex items-center space-x-2 transition duration-300 hover:bg-[#9d0a0a]"
           >
             <span className="text-lg">LEARN MORE</span>
             <span className="text-2xl leading-none">&gt;</span>
-          </a>
+          </button>
         </div>
     </div>
 

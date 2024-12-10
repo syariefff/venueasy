@@ -1,9 +1,11 @@
 "use client";
+import Link from "next/link";
+import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
-import Image from "next/image";
 import { useRouter } from "next/navigation"; // Untuk navigasi antar halaman
 import Logo from "@/assets/images/blacklogo.png";
+import { Libre_Barcode_128 } from "next/font/google";
 
 const Login: React.FC = () => {
   const [isClient, setIsClient] = useState(false);
@@ -96,12 +98,12 @@ const Login: React.FC = () => {
               </div>
             </div>
           </div>
-          <button
+          <Link href="/"
             type="submit"
-            className="bg-[#8b4513] text-white w-32 py-2 rounded items-center justify-center"
+            className="bg-[#8b4513] text-white w-[150px] py-2 rounded text-center items-center justify-center"
           >
             Login
-          </button>
+          </Link>
           <div className="mt-4">
             <span className="text-sm">Don't Have An Account? </span>
             <button
