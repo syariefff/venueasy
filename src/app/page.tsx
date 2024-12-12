@@ -1,4 +1,4 @@
-"use client"
+       "use client"
 import { Icon } from "@iconify/react";
 import Image from 'next/image';
 import Hero from "@/assets/images/bgn.png";
