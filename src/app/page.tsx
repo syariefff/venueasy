@@ -1,4 +1,4 @@
-       "use client"
+"use client"
 import { Icon } from "@iconify/react";
 import Image from 'next/image';
 import Hero from "@/assets/images/bgn.png";
@@ -84,17 +84,43 @@ const Home = () => {
         <div className="mt-12 text-center">
           <p className="text-black mb-2">Contact Us</p>
           <div className="flex justify-center gap-4 text-black">
+            {/* Instagram */}
             <div className="flex items-center gap-1">
-              <Icon icon="proicons:instagram" style={{ color: "black", fontSize: "24px" }} />
+              <a
+                href="https://www.instagram.com/venueasy" // Ubah ke link Instagram yang benar
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 hover:underline"
+              >
+                <Icon icon="proicons:instagram" style={{ color: "black", fontSize: "24px" }} />
                 <span>Venueasy</span>
+              </a>
             </div>
+
+            {/* Phone */}
             <div className="flex items-center gap-1">
-              <Icon icon="bi:telephone" style={{ color: "black", fontSize: "19px", }} />
+              <a
+                href="tel:+6286738476645"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 hover:underline"
+              >
+                <Icon icon="bi:telephone" style={{ color: "black", fontSize: "19px" }} />
                 <span>+62 867 3847 6645</span>
-            </div>
+              </a>
+              </div>
+
+            {/* Email */}
             <div className="flex items-center gap-1">
-              <Icon icon="mdi-light:email" style={{ color: "black", fontSize: "24px" }} />
+              <a
+                href="mailto:info@venueasy.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 hover:underline"
+              >
+                <Icon icon="mdi-light:email" style={{ color: "black", fontSize: "24px" }} />
                 <span>info@venueasy.com</span>
+              </a>
             </div>
           </div>
         </div>
