@@ -180,7 +180,7 @@ const Register: React.FC = () => {
             type="submit"
             className="bg-[#8b4613] text-white w-40 py-2 rounded items-center justify-center"
           >
-            Create Account
+            <a href="/verification">Create Account</a>
           </button>
           <div className="mt-4">
             <span className="text-sm">Already have an account? </span>

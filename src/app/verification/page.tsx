@@ -41,7 +41,11 @@ const Verify: React.FC = () => {
               />
             ))}
           </div>
-          <button type="submit" className="bg-blue-500 text-white py-2 px-20 rounded">Confirm</button>
+          <button type="submit" className="bg-blue-500 text-white py-2 px-20 rounded">
+            <a href="/">
+              Confirm
+            </a>
+          </button>
           <a href="#" className="text-blue-500 mt-4 block text-xs underline">Change Email?</a>
         </form>
       </div>

@@ -4,11 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import Logo from "@/assets/images/logo.png";
 import { usePathname } from "next/navigation"; 
+import { Icon } from "@iconify/react";
 
 const Navbar: React.FC = () => {
   
   const pathname = usePathname();
-  if (pathname=== "/login" || pathname === "/register") {
+  if (pathname=== "/login" || pathname === "/register" || pathname === "/verification") {
     return null;
   }
 
@@ -45,10 +46,23 @@ const Navbar: React.FC = () => {
 
           {/* Tombol di Kanan */}
           <div className="flex items-center gap-4">
+            <div className="flex flex-col items-center">
+              <Link href={"/"}>
+                <div className="flex flex-col items-center mr-2">
+                  <Icon
+                    icon="material-symbols-light:crown"
+                    style={{ color: "#CCAC12", fontSize: "32px" }}/>
+                  <li className="list-none text-white text-xs hover:text-[#b30d0d] transition duration-300">Owner Venue</li>
+                </div>
+              </Link>
+            </div>
             <Link href={"/login"}>
-            <button className="bg-[#b30d0d] text-white px-4 py-2 rounded transition duration-300 hover:bg-[#9d0a0a]">LOGIN</button>
+              <button className="bg-[#b30d0d] text-white px-4 py-2 rounded transition duration-300 hover:bg-[#9d0a0a]">
+                LOGIN
+              </button>
             </Link>
           </div>
+
         </header>
       </main>
     </div>
