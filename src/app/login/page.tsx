@@ -5,8 +5,6 @@ import React, { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import { useRouter } from "next/navigation"; // Untuk navigasi antar halaman
 import Logo from "@/assets/images/blacklogo.png";
-import { Libre_Barcode_128 } from "next/font/google";
-
 const Login: React.FC = () => {
   const [isClient, setIsClient] = useState(false);
   const [formData, setFormData] = useState({
