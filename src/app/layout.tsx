@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import {Poppins} from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
+import {Session} from "next-auth"
+import AuthProvider from "@/components/AuthProvider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -14,15 +16,19 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
+  children, session ,
 }: Readonly<{
   children: React.ReactNode;
+  session: Session;
 }>) {
   return (
     <html lang="en">
+
       <body className={`${poppins.className} text-black antialiased`}>
         <Navbar />
+        <AuthProvider session={session}>
         <main>{children}</main>
+        </AuthProvider>
       </body>
     </html>
   );
