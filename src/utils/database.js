@@ -11,7 +11,7 @@ export const connectToDB = async () => {
     }
 
     try {
-        await mongoose.connect('mongodb://localhost:27017/venueDB/login');
+        await mongoose.connect('mongodb://localhost:27017/venue');
 
         isConnected = true;
         console.log("connected to MongoDB");
