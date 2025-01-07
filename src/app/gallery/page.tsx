@@ -5,18 +5,18 @@ import Meeting from '@/assets/icons/meetingroom.svg';
 import Outdoor from '@/assets/icons/outdoor.svg';
 import Ballroom from '@/assets/icons/ballroom.svg';
 import RecommendedSection from '@/components/rekomendasi';
-import { venues } from '@/components/datavenue';
+
 
 const GallerySection = () => {
   const images = [
-    { city: 'BANDUNG', src: Bandung },
-    { city: 'BANDUNG', src: Bandung },
-    { city: 'BANDUNG', src: Bandung },
-    { city: 'SURABAYA', src: Bandung },
-    { city: 'SURABAYA', src: Bandung },
-    { city: 'SURABAYA', src: Bandung },
+    { city: 'BANDUNG', src: 'bandung.svg' },
+    { city: 'BALI', src: 'bali.svg' },
+    { city: 'JAKARTA', src: 'jakarta.svg'},
+    { city: 'MAKASSAR', src: 'makasar.svg' },
+    { city: 'YOGYAKARTA', src: 'yogya.svg' },
+    { city: 'MEDAN', src: 'medan.svg' },
   ];
-
+  
   return (
     <div className="relative p-5 min-h-screen">
       <div className="p-5 mb-4">
@@ -25,14 +25,16 @@ const GallerySection = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {images.map((image, index) => (
               <div key={index} className="relative">
-                <Image
-                  src={image.src}
-                  alt={image.city}
-                  width={370}
-                  height={100}
-                  className="rounded-xl object-cover bg-black"
-                />
-                <div className="absolute bottom-4 left-4 text-white px-4 py-2 rounded-lg">
+                <div className="w-[370px] h-[250px] overflow-hidden rounded-xl">
+                  <Image
+                    src={image.src}
+                    alt={image.city}
+                    width={370}
+                    height={250}
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+                <div className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-md text-white px-4 py-2 rounded-lg">
                   {image.city}
                 </div>
               </div>
@@ -41,7 +43,7 @@ const GallerySection = () => {
         </div>
       </div>
     </div>
-  );
+  );  
 };
 
 const VenuesSection = () => {
@@ -50,7 +52,7 @@ const VenuesSection = () => {
       <h6 className="text-center mb-1">Popular Venue</h6>
       <h2 className="text-center text-2xl font-bold mb-8">Book our venue for your special event!</h2>
 
-      <RecommendedSection venues={venues} count={4} />
+      <RecommendedSection count={4} />
 
       <div>
         <hr className="border-t-2 border-black w-[95%] mx-auto my-6" />
@@ -72,7 +74,7 @@ const VenuesSection = () => {
         </div>
         <hr className="border-t-2 border-black w-[95%] mx-auto my-6 mt-12" />
 
-        <RecommendedSection venues={venues} count={12} />
+        <RecommendedSection count={12} />
       </div>
     </div>
   );

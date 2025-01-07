@@ -1,35 +1,43 @@
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 
-import user from "@/models/user";
-import { connectToDB } from "@/utils/database";
+import User from "@/models/user"; // Model user kamu
+import { connectToDB } from "@/utils/database"; // Function buat connect DB
 
 const handler = NextAuth({
-    providers: [
-        GoogleProvider({
-            clientId:process.env.GOOGLE_ID,
-            clientSecret:process.env.GOOGLE_SECRET,
-        }),
-    ],
-    callbacks: {
-        async session({session}){
-            return session
-        },
+  providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_ID,
+      clientSecret: process.env.GOOGLE_SECRET,
+    }),
+  ],
+  callbacks: {
+    async session({ session }) {
+      // Session callback (opsional)
+      return session;
+    },
+    async signIn({ account, profile }) {
+      try {
+        await connectToDB(); // Connect ke database
 
-        async signIn({account, profile, user, credentials}){
-           try {
-                await connectToDB()
-                const checkEmail=await UserActivation.find({email:profile.email})
+        // Cek apakah user sudah ada
+        const existingUser = await User.findOne({ email: profile.email });
 
-                if (checkEmail.length==0){
-                await user.insertMany({name:user.name,email:user.email})
-                }
-           
-            } catch (error) {
-                console.log(e)
-           }
+        // Kalau belum ada, tambahin ke database
+        if (!existingUser) {
+          await User.create({
+            name: profile.name,
+            email: profile.email,
+          });
         }
-    }
-})
 
-export {handler as GET, handler as POST}
+        return true; // Sukses, lanjut redirect default
+      } catch (error) {
+        console.error("Error during sign-in:", error);
+        return "/login"; // Gagal, redirect ke login
+      }
+    },
+  },
+});
+
+export { handler as GET, handler as POST };

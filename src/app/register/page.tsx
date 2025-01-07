@@ -3,7 +3,8 @@ import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
-import { useRouter } from "next/navigation"; // Untuk navigasi antar halaman
+import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react"; // Import fungsi signIn
 import Logo from "@/assets/images/blacklogo.png";
 
 const Register: React.FC = () => {
@@ -21,11 +22,15 @@ const Register: React.FC = () => {
     email: "",
     password: "",
   });
-  const router = useRouter(); // Inisialisasi router
+  const router = useRouter();
 
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  const handleGoogleSignIn = async () => {
+    await signIn("google", { callbackUrl: "/" }); // Redirect setelah sukses login
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -82,8 +87,10 @@ const Register: React.FC = () => {
             </h1>
             <h2 className="text-xl">Venueasy</h2>
           </div>
-          <Link href="/" className="text-sm text-gray-500 hover:text-gray-700">
-          <div className="flex items-center bg-blue-500 text-white w-60 py-2 rounded mb-4">
+          <div
+            className="flex items-center bg-blue-500 text-white w-60 py-2 rounded mb-4 cursor-pointer"
+            onClick={handleGoogleSignIn} // Tambahkan handler Google Sign-In
+          >
             <Icon
               icon="ri:google-fill"
               style={{ color: "white", fontSize: "26px" }}
@@ -91,7 +98,6 @@ const Register: React.FC = () => {
             />
             <span className="text-center">Sign Up with Google</span>
           </div>
-          </Link>
           <div className="w-full max-w-xs">
             <div className="text-center mb-4">OR</div>
             <div className="mb-4">

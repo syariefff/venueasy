@@ -6,7 +6,7 @@ import { Icon } from "@iconify/react";
 import { useRouter } from "next/navigation"; // Untuk navigasi antar halaman
 import Logo from "@/assets/images/blacklogo.png";
 
-import {signIn, useSession} from 'next-auth/react'
+import { signIn, useSession } from "next-auth/react";
 
 const Login: React.FC = () => {
   const [isClient, setIsClient] = useState(false);
@@ -16,18 +16,20 @@ const Login: React.FC = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
+
+  // Cek jika komponen sudah render di sisi client
   useEffect(() => {
     setIsClient(true);
   }, []);
 
+  const { data: session } = useSession();
 
-    const { data: session } = useSession()
-
-//    if (session) {
-//        router.replace('/')
-//        return null
-//    }
-
+  // Navigasi otomatis jika sudah login
+  useEffect(() => {
+    if (session) {
+      router.replace("/");
+    }
+  }, [session, router]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -39,12 +41,11 @@ const Login: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Add login logic here
     console.log("Login attempted", formData);
   };
 
-  if (!isClient) {
-    return null;
+  if (!isClient || session) {
+    return null; // Mencegah double render di server-side dan saat user sudah login
   }
 
   return (
@@ -58,7 +59,8 @@ const Login: React.FC = () => {
             </h1>
             <h2 className="text-xl">Venueasy</h2>
           </div>
-          <button onClick={() => signIn('google')}
+          <button
+            onClick={() => signIn("google")}
             type="button"
             className="flex items-center bg-blue-500 text-white w-60 py-2 rounded mb-4 focus:outline-none hover:bg-blue-600 transition duration-300"
           >
@@ -110,7 +112,8 @@ const Login: React.FC = () => {
               </div>
             </div>
           </div>
-          <Link href="/"
+          <Link
+            href="/"
             type="submit"
             className="bg-[#8b4513] text-white w-[150px] py-2 rounded text-center items-center justify-center"
           >

@@ -1,23 +1,10 @@
 import mongoose from "mongoose";
 
-let isConnected = false;
-
 export const connectToDB = async () => {
-    mongoose.set("strictQuery", true);
+  if (mongoose.connection.readyState === 1) return;
 
-    if (isConnected) {
-        console.log("MongoDB is already connected");
-        return;
-    }
-
-    try {
-        await mongoose.connect('mongodb://localhost:27017/venue');
-
-        isConnected = true;
-        console.log("connected to MongoDB");
-    }
-    catch (e) {
-        console.log(e);
-    }
-
-}
+  await mongoose.connect(process.env.MONGODB_URI || "", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+};
